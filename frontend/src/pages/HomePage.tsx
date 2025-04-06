@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {getReservations} from '../api/reservationService';
-import {Reservation} from '../types/Reservation';
+import {useReservationContext} from '../context/ReservationContext';
 import ReservationList from '../components/ReservationList';
 
 const HomePage: React.FC = () => {
-  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const {reservations, setReservations} = useReservationContext();
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
       setReservations(data);
     };
     fetchReservations();
-  }, []);
+  }, [setReservations]);
 
   return (
     <div>
