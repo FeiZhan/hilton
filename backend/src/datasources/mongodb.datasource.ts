@@ -2,8 +2,15 @@ import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
 const config = {
-  name: 'couchbase',
-  connector: 'loopback-connector-couchbase'
+  name: 'mongodb',
+  connector: 'mongodb',
+  url: 'mongodb://localhost:27017/hilton',
+  host: 'localhost',
+  port: 27017,
+  user: '',
+  password: '',
+  database: 'hilton',
+  useNewUrlParser: true
 };
 
 // Observe application's life cycle to disconnect the datasource when
@@ -11,13 +18,13 @@ const config = {
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
-export class CouchbaseDataSource extends juggler.DataSource
+export class MongodbDataSource extends juggler.DataSource
   implements LifeCycleObserver {
-  static dataSourceName = 'couchbase';
+  static dataSourceName = 'mongodb';
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.couchbase', {optional: true})
+    @inject('datasources.config.mongodb', {optional: true})
     dsConfig: object = config,
   ) {
     super(dsConfig);

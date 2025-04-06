@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
 import {DefaultCrudRepository} from '@loopback/repository';
-import {CouchbaseDataSource} from '../datasources';
+import {MongodbDataSource} from '../datasources';
 import {Reservation, ReservationRelations} from '../models';
 
 export class ReservationRepository extends DefaultCrudRepository<
@@ -9,7 +9,7 @@ export class ReservationRepository extends DefaultCrudRepository<
   ReservationRelations
 > {
   constructor(
-    @inject('datasources.couchbase') dataSource: CouchbaseDataSource,
+    @inject('datasources.couchbase') dataSource: MongodbDataSource,
   ) {
     super(Reservation, dataSource);
   }

@@ -1,1 +1,1 @@
-export * from './couchbase.datasource';
+export * from './mongodb.datasource';
