@@ -56,6 +56,7 @@
     "@loopback/rest-explorer": "^7.0.12",
     "@loopback/service-proxy": "^7.0.12",
     "loopback-connector-couchbase": "^1.0.6",
+    "loopback-connector-mongodb": "github:loopbackio/loopback-connector-mongodb",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
