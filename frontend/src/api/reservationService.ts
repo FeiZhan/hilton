@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {Reservation} from '../types/Reservation';
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'http://localhost:4000';
 
 export const getReservations = async (): Promise<Reservation[]> => {
   const response = await axios.get(`${API_BASE_URL}/reservations`);

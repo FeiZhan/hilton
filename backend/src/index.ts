@@ -7,6 +7,10 @@ export async function main(options: ApplicationConfig = {}) {
   await app.boot();
   await app.start();
 
+  const port = process.env.PORT || 4000;
+  app.bind('rest.port').to(port);
+  console.log(`Backend is running on port ${port}`);
+
   const url = app.restServer.url;
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
@@ -17,7 +21,7 @@ export async function main(options: ApplicationConfig = {}) {
 if (require.main === module) {
   const config = {
     rest: {
-      port: +(process.env.PORT ?? 3000),
+      port: +(process.env.PORT ?? 4000),
       host: process.env.HOST ?? '127.0.0.1',
       gracePeriodForClose: 5000,
       openApiSpec: {
