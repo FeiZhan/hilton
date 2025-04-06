@@ -159,7 +159,6 @@ export class ReservationController {
     return this.reservationRepository.findByDateAndStatus(date, status);
   }
 
-  // Custom endpoint to update the status of a reservation
   @patch('/reservations/{id}/status')
   async updateStatus(
     @param.path.string('id') id: string,

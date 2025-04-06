@@ -46,7 +46,6 @@ export class Reservation extends Entity {
 }
 
 export interface ReservationRelations {
-  // describe navigational properties here
 }
 
 export type ReservationWithRelations = Reservation & ReservationRelations;
