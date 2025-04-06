@@ -20,7 +20,7 @@ import {
 import {Reservation} from '../models';
 import {ReservationRepository} from '../repositories';
 
-export class ReservationControllerController {
+export class ReservationController {
   constructor(
     @repository(ReservationRepository)
     public reservationRepository : ReservationRepository,
@@ -146,5 +146,16 @@ export class ReservationControllerController {
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.reservationRepository.deleteById(id);
+  }
+
+  @get('/reservations/filter')
+  async findByDateAndStatus(
+    @param.query.string('date') date: string,
+    @param.query.string('status') status: string,
+  ): Promise<Reservation[]> {
+    if (!date || !status) {
+      throw new Error('Both date and status parameters are required');
+    }
+    return this.reservationRepository.findByDateAndStatus(date, status);
   }
 }
