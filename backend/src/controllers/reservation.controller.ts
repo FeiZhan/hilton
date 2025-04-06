@@ -158,4 +158,36 @@ export class ReservationController {
     }
     return this.reservationRepository.findByDateAndStatus(date, status);
   }
+
+  // Custom endpoint to update the status of a reservation
+  @patch('/reservations/{id}/status')
+  async updateStatus(
+    @param.path.string('id') id: string,
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {type: 'string'},
+            },
+            required: ['status'],
+          },
+        },
+      },
+    })
+    body: {status: string},
+  ): Promise<{success: boolean}> {
+    const validStatuses = ['pending', 'completed', 'canceled'];
+    if (!validStatuses.includes(body.status)) {
+      throw new Error(`Invalid status. Allowed values: ${validStatuses.join(', ')}`);
+    }
+
+    const success = await this.reservationRepository.updateStatus(id, body.status);
+    if (!success) {
+      throw new Error(`Reservation with ID ${id} not found`);
+    }
+
+    return {success};
+  }
 }
