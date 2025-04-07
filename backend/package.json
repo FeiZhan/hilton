@@ -51,10 +51,13 @@
   "dependencies": {
     "@loopback/boot": "^7.0.12",
     "@loopback/core": "^6.1.9",
+    "@loopback/graphql": "^0.11.12",
     "@loopback/repository": "^7.0.12",
     "@loopback/rest": "^14.0.12",
     "@loopback/rest-explorer": "^7.0.12",
     "@loopback/service-proxy": "^7.0.12",
+    "apollo-server-express": "^3.13.0",
+    "graphql": "^16.10.0",
     "loopback-connector-couchbase": "^1.0.6",
     "loopback-connector-mongodb": "github:loopbackio/loopback-connector-mongodb",
     "tslib": "^2.0.0"
@@ -63,6 +66,7 @@
     "@loopback/build": "^11.0.10",
     "@loopback/eslint-config": "^15.0.5",
     "@loopback/testlab": "^7.0.11",
+    "@types/graphql": "^14.2.3",
     "@types/mocha": "^10.0.10",
     "@types/node": "^16.18.126",
     "chai": "^5.2.0",
