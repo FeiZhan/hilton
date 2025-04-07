@@ -21,7 +21,10 @@ const CreateReservationForm: React.FC<CreateReservationFormProps> = ({onSubmit})
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit({
+      ...formData,
+      reservedTableSize: Number(formData.reservedTableSize),
+    });
   };
 
   return (
@@ -42,8 +45,10 @@ const CreateReservationForm: React.FC<CreateReservationFormProps> = ({onSubmit})
         onChange={handleChange}
         required
       />
+      <label htmlFor="expectedArrivalTime">Expected Arrival Time</label>
       <input
         type="datetime-local"
+        id="expectedArrivalTime"
         name="expectedArrivalTime"
         value={formData.expectedArrivalTime}
         onChange={handleChange}
@@ -52,11 +57,18 @@ const CreateReservationForm: React.FC<CreateReservationFormProps> = ({onSubmit})
       <input
         type="number"
         name="reservedTableSize"
+        placeholder="reservedTableSize"
         value={formData.reservedTableSize}
         onChange={handleChange}
         required
       />
-      <select name="status" value={formData.status} onChange={handleChange}>
+      <label htmlFor="status">Status</label>
+      <select
+        id="status"
+        name="status"
+        value={formData.status}
+        onChange={handleChange}
+      >
         <option value="pending">Pending</option>
         <option value="completed">Completed</option>
         <option value="canceled">Canceled</option>
