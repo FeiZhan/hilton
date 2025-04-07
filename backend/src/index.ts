@@ -7,7 +7,7 @@ export async function main(options: ApplicationConfig = {}) {
   await app.boot();
   await app.start();
 
-  const port = process.env.PORT || 4000;
+  const port = process.env.PORT ?? 4000;
   app.bind('rest.port').to(port);
   console.log(`Backend is running on port ${port}`);
 
