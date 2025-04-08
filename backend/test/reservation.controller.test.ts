@@ -9,7 +9,11 @@ describe('ReservationController (Integration)', () => {
   let reservationRepository: ReservationRepository;
 
   before(async () => {
-    app = new BackendApplication();
+    app = new BackendApplication({
+      rest: {
+        port: 0,
+      },
+    });
 
     const memoryDataSource = new juggler.DataSource({
       name: 'mongodb',
@@ -29,7 +33,9 @@ describe('ReservationController (Integration)', () => {
   });
 
   after(async () => {
-    await app.stop();
+    if (app) {
+      await app.stop();
+    }
   });
 
   it('should create a new reservation', async () => {

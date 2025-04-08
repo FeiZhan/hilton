@@ -9,7 +9,11 @@ describe('ReservationRepository (Unit)', () => {
   let reservationRepository: ReservationRepository;
 
   before(async () => {
-    app = new BackendApplication();
+    app = new BackendApplication({
+      rest: {
+        port: 0,
+      },
+    });
     const memoryDataSource = new juggler.DataSource({
       name: 'mongodb',
       connector: 'memory',
